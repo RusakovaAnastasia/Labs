@@ -1,0 +1,68 @@
+#include <iostream>
+#include <ctime>
+#include <stdlib.h>
+
+using namespace std;
+
+int main() {
+
+    srand(time(NULL));
+    int const size = 10; // задаем размер массива
+    int n = 10;
+
+    int arr[size]; //объявляем массив
+     
+
+    for (int i = 0; i < size; i++) {
+        arr[i] = rand() % 10; //заполняем массив случайными элементами
+    }
+
+    int min = arr[0];
+    for (int i = 0; i < size; i++) //находим минимальный элемент
+    {
+        if (min > arr[i])
+            min = arr[i];
+    }
+
+    for (int i = 0; i < size; i++)
+    {
+        cout << arr[i] << " ";
+    }
+
+    cout << "\nmin=" << min << endl; //выводим минимальный элемент (для удобства)
+
+    
+    int sizeA = 0;  
+    for (int i = 0; i < size; i++)  
+    {
+        if (arr[i] == min) { //определяем количество минимальных элементов
+            sizeA++;
+            n--;
+            ;
+        }
+    }
+    int *A = new int[size-sizeA];
+    
+    for (int i = 0, j = 0; i < size; i++)
+    {
+        if (arr[i] != min) {  //вписываем в массив А элементы НЕ равные минимальному значению
+            A[j] = arr[i];
+            j++;
+        }
+    }
+
+
+    double S = 0; 
+    double C;
+    for (int i = 0; i < size - sizeA; i++) {
+        S = S + A[i]; //сумма всех элементов массива А
+        C = S / n; //среднее арифметическое элементов массива А
+     }
+    cout << C << endl; //вывод
+    cout << C << endl;
+    cout << C << endl;
+    for (int i = 0; i < size - sizeA; i++) {
+        cout << A[i] << endl;
+    }
+    return 0;
+}
